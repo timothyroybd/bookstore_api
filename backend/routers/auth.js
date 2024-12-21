@@ -19,9 +19,7 @@ router.post(
       return res.status(400).json({ error: errors.array() });
     }
     const { username, email, password } = req.body;
-    // In the try block following things happen
-    // 1. to find if the user already exists
-    //2. if exist, then throw err. If not, then create the user and sign jwt and send it.
+  
     try {
       let user = await User.findOne({ email });
       if (user) {
@@ -42,7 +40,10 @@ router.post(
         },
       };
 
-      jwt.sign(payload, 'secretToken', { expiresIn: 3600 }, (err, token) => {
+      jwt.sign(payload, 
+        process.env.jwtSecret, 
+        { expiresIn: 3600 }, 
+        (err, token) => {
         if (err) throw err;
         res.json({ token });
       });
@@ -78,7 +79,7 @@ router.post('/login', [check('email', 'please enter a valid email').isEmail(), c
     }
     jwt.sign(
         payload, 
-        'secretToken', 
+         process.env.jwtSecret, 
         {expiresIn: 3600}, 
         (err, token) => {
             if(err) throw err
