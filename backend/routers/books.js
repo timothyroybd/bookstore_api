@@ -8,7 +8,7 @@ const auth = require('../middleware/auth');
 //Get all books from DB
 router.get('/', auth, async (req, res) => {
   try {
-    const books = await Book.find();
+    const books = await Book.find({user:req.user.id});
     res.json(books);
   } catch (err) {
     console.error(err.message);
@@ -35,7 +35,7 @@ router.post(
 
     try {
      
-      book = new Book({
+      const book = new Book({
         title,
         author,
         description,

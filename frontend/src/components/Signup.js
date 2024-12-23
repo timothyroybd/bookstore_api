@@ -3,7 +3,7 @@ import api from '../services/api';
 import {useNavigate} from 'react-router-dom'
 
 
-const Signup = () => {
+const Signup = ({setToken}) => {
 
     const [username, setUsername]= useState('')
     const [password, setPassword] = useState('')
@@ -12,9 +12,15 @@ const Signup = () => {
 
     const handleSignUp = async(e) => {
         e.preventDefault()
-        try{    
-            await api.post('/auth/register', {username, email, password})
-            navigate('/')
+        try{  
+            const response = await api.post('/auth/register', {username, email, password})
+            const token = response.data.token
+            console.log(`signup response: ${response}`)
+            if(token){
+                console.log(`this is the token: ${token} and I am logging from signup right after register token`)
+                setToken(token)
+                navigate('/library')
+            }
         }
         catch(err){
             console.error(`Signup failed ${err}`)
