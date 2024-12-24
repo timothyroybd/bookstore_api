@@ -21,21 +21,15 @@ const Library = ({ token }) => {
         return;
       }
       try {
-        // console.log('Token used for fetching books (fetchBooks)', token)
+         console.log('Token used for fetching books (fetchBooks)', token)
         const response = await api.get('/books', {
           headers: {
-            'x-auth-token': token,
-          },
+            Authorization: `Bearer ${token}`
+          }
         });
-        console.log(response.data);
+        console.log('Fetched books response:', response.data);
         setBooks(response.data);
-        console.log(
-          `I am running from Library.js and the token value is ${token}`
-        );
-
-        console.log(books);
-
-        console.log('This is actual books value', books);
+        
       } catch (err) {
         console.error(`Error fetching books: ${err}`);
       }
@@ -62,8 +56,8 @@ const Library = ({ token }) => {
     try {
       await api.put(`/books/${id}`, editedBook, {
         headers: {
-          'x-auth-token': token,
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
 
       const updatedBooks = books.map((book) =>
@@ -80,7 +74,7 @@ const Library = ({ token }) => {
       try{
         await api.delete(`/books/${id}`, {
           headers: {
-            'x-auth-token': token
+            Authorization: `Bearer ${token}`
           }
         })
 

@@ -16,13 +16,20 @@ const Login = ({setToken}) => {
     event.preventDefault();
     try {
       const response = await api.post('/auth/login', { email, password });
-      const token = response.data.token;
+      console.log('Login response:', response.data);
+      const token = response.data?.accessToken;
+      if (!token) { 
+        console.error('Token is undefined:', response.data); 
+        return; }
       console.log('This is the whole response data:', response);
       console.log('This is the whole token data:', token);
-      if(token){
-        setToken(token)
-        navigate('/library')
-      }
+      setToken(token)
+      localStorage.setItem('token', token)
+      navigate('/library')
+      // if(token){
+      //   setToken(token)
+      //   navigate('/library')
+      // }
       
     } catch (err) {
       console.error('login failed', err);

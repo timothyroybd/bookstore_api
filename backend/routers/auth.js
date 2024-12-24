@@ -4,7 +4,22 @@ const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const cookieParser = require('cookie-parser');
+router.use(cookieParser());
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
+const generateAccessToken = (user) => {
+  return jwt.sign({ id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '15m',
+  });
+};
+
+const generateRefreshToken = (user) => {
+  return jwt.sign({ id: user.id }, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: '7d',
+  });
+};
 
 //Register
 router.post(
@@ -80,20 +95,25 @@ router.post(
       if (!isMatch) {
         return res.status(400).json({ msg: 'Invalid Credentials' });
       }
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-      jwt.sign(
-        payload,
-        process.env.jwtSecret,
-        { expiresIn: 3600 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      // const payload = {
+      //   user: {
+      //     id: user.id,
+      //   },
+      // };
+      // jwt.sign(
+      //   payload,
+      //   process.env.jwtSecret,
+      //   { expiresIn: 3600 },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.json({ token });
+      //   }
+      // );
+      const accessToken = generateAccessToken(user);
+      const refreshToken = generateRefreshToken(user);
+      await User.findByIdAndUpdate(user.id, { refreshToken });
+      res.cookie('refreshToken', refreshToken, { httpOnly:true });
+      res.json({ accessToken });
     } catch (err) {
       console.log(err.message);
       res.status(500).send('server error');
@@ -104,7 +124,9 @@ router.post(
 //user profile get
 router.get('/profile', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    console.log('User ID from token:', req.user);
+    const user = await User.findById(new ObjectId(req.user)).select('-password');
+    console.log('User fetched from DB:', user)
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -148,4 +170,16 @@ router.put(
     }
   }
 );
+
+router.post('/token', async (req, res) => {
+  const refreshToken = req.cookies.refreshToken;
+  if (!refreshToken) return res.sendStatus(401);
+  const user = await User.findOne({ refreshToken });
+  if (!user) return res.sendStatus(403);
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.sendStatus(403);
+    const accessToken = generateAccessToken({id: decoded.id});
+    res.json({ accessToken });
+  });
+});
 module.exports = router;

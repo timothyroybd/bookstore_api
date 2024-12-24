@@ -15,7 +15,7 @@ const AddBook = ({ token }) => {
           { title, author, description },
           {
             headers: {
-              'x-auth-token': token,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

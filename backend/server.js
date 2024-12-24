@@ -7,7 +7,10 @@ const app = express()
 const PORT = 5000; 
 const routes = require('./routers/index')
 
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
 
 app.use(express.json())
 app.use('/', routes)

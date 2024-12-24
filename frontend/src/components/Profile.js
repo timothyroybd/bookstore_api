@@ -9,7 +9,7 @@ const Profile = ({ token }) => {
     const fetchUser = async() => {
         try{
             const response = await api.get('/auth/profile', {
-                headers: {'x-auth-token': token}
+                headers: {Authorization: `Bearer ${token}`}
             })
             setUser({...response.data, password: ''})
         }catch(err){
@@ -26,7 +26,7 @@ const Profile = ({ token }) => {
   const handleBlur = async() => {
     try{
         await api.put('/auth/profile', user, {
-            headers: {'x-auth-token': token}
+            headers: {Authorization: `Bearer ${token}`}
         })
         setEditingField('')
     }

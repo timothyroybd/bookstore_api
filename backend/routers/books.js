@@ -8,7 +8,9 @@ const auth = require('../middleware/auth');
 //Get all books from DB
 router.get('/', auth, async (req, res) => {
   try {
+    console.log('User ID from request:', req.user.id)
     const books = await Book.find({user:req.user.id});
+    console.log('Books fetched from DB:', books);
     res.json(books);
   } catch (err) {
     console.error(err.message);
