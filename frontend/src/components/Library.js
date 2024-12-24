@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import {Link} from "react-router-dom"
+import AddBook from './AddBook';
 
 const Library = ({ token }) => {
   const [books, setBooks] = useState([]);
@@ -38,6 +39,7 @@ const Library = ({ token }) => {
     <div>
       <h1> Library</h1>
       <Link to ="/profile">Profile</Link>
+      <Link to ="/addbook"> AddBoook</Link>
 
       <ul>
         {books.map((book) => (
