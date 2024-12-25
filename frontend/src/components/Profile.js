@@ -17,6 +17,7 @@ const Profile = ({ token }) => {
         }
     }
     fetchUser()
+    // console.log('Fetched user:', response.data);
   }, [token])
 
   const handleInputChange = (e) => {

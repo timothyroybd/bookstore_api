@@ -4,8 +4,12 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { Link } from 'react-router-dom';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const Library = ({ token }) => {
+const Library = ({ initialToken }) => {
+  const navigate = useNavigate()
+  const [token, setToken] = useState(initialToken || localStorage.getItem('token'))
+
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [editedBook, setEditedBook] = useState({
@@ -85,11 +89,18 @@ const Library = ({ token }) => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    setToken(null)
+    navigate('/')
+  }
+
   return (
     <div>
       <h1> Library</h1>
       <Link to="/profile">Profile</Link>
       <Link to="/addbook"> AddBoook</Link>
+      <button onClick={handleLogout}> Sing Out</button>
 
       <ul>
         {books.map((book) => (

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const AddBook = ({ token }) => {
+  const navigate = useNavigate();
   
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
 
   
-    const handleAddBook = async () => {
+    const handleAddBook = async (e) => {
+      e.preventDefault()
       try {
         const response = api.post(
           '/books/register',
@@ -16,13 +19,14 @@ const AddBook = ({ token }) => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-            },
+            }
           }
-        );
+        )
         console.log(response.data);
         setTitle('');
         setAuthor('');
         setDescription('');
+        navigate('/library')
       } catch (err) {
         console.error('Error adding book', err);
       }

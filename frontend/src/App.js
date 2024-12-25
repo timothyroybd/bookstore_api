@@ -16,7 +16,7 @@ function App() {
       <main>
         <Routes>
           <Route path = "/" element = {<Login setToken = {setToken} /> } />
-          <Route path = "/library" element = {<Library token = {token} /> } />
+          <Route path = "/library" element = {<Library initialToken = {token} /> } />
           <Route path="/signup" element={<Signup setToken={setToken}/>} />
           <Route path="/profile" element={<Profile token={token} />} />
           <Route path ="/addbook" element={<AddBook token={token} />} />
