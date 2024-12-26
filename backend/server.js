@@ -7,10 +7,16 @@ const app = express()
 const PORT = 5000; 
 const routes = require('./routers/index')
 
+app.use((req,res, next) => {
+    res.setHeader('Cache-control', 'no-store')
+    next()
+})
+
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }))
+
 
 app.use(express.json())
 app.use('/', routes)

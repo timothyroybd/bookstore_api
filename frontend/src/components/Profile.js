@@ -37,10 +37,10 @@ const Profile = ({ token }) => {
   }
 
   return (
-    <div>
-      <h2>Profile</h2>
+    <div className='container mx-auto px-4 py-8 mb-4'>
+      <h2 className='text-2xl font-bold mb-4'>Profile</h2>
       <div>
-        <label>Username:</label>
+        <label className='block text-gray-700 text-sm font-bold mb-1'>Username:</label>
         {editingField === 'username' ? (
           <input
             type="text"
@@ -49,6 +49,8 @@ const Profile = ({ token }) => {
             onChange={handleInputChange}
             onBlur={handleBlur}
             autoFocus
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
           />
         ) : (
           <div onClick={() => setEditingField('username')}>
@@ -57,7 +59,7 @@ const Profile = ({ token }) => {
         )}
       </div>
       <div>
-        <label>Email: </label>
+        <label className='block text-gray-700 text-sm font-bold mb-1'>Email: </label>
         {editingField === 'email' ? (
           <input
             type="email"
@@ -66,6 +68,8 @@ const Profile = ({ token }) => {
             onChange={handleInputChange}
             onBlur={handleBlur}
             autoFocus
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
           ></input>
         ) : (
           <div onClick={() => setEditingField('email')}>
@@ -74,7 +78,7 @@ const Profile = ({ token }) => {
         )}
       </div>
       <div>
-        <label>Password: </label>
+        <label className='block text-gray-700 text-sm font-bold mb-1'>Password: </label>
         {editingField === 'password' ? (
           <input
             type="password"
@@ -82,7 +86,8 @@ const Profile = ({ token }) => {
             value={user.password}
             onChange={handleInputChange}
             onBlur={handleBlur}
-            autoFocus
+            autoFocus className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
           />
         ) : (
           <div onClick={() => setEditingField('password')}>

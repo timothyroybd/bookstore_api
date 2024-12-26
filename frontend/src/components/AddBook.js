@@ -34,8 +34,12 @@ const AddBook = ({ token }) => {
  
 
   return (
-    <form onSubmit={handleAddBook}>
-      <input
+    <div className='container mx-auto px-4 py-8'>
+    <form onSubmit={handleAddBook} className='bg-white shadow-md rounded px-8 pt-6 mb-2'>
+      <div className='container mx-auto px-4 py-4'>
+        <label className='block text-gray-700 text-sm font-bold mb-1 ' htmlFor="title">Title</label>
+         <input
+         className='shadow apperance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
         type="text"
         value={title}
         onChange={(e) => {
@@ -44,7 +48,14 @@ const AddBook = ({ token }) => {
         placeholder="Title"
         required
       />
-      <input
+      </div>
+
+     
+
+      <div className='container mx-auto px-4 py-4'>
+        <label className='block text-gray-700 text-sm font-bold mb-1 ' htmlFor="author">Author</label>
+         <input
+         className='shadow apperance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
         type="text"
         value={author}
         onChange={(e) => {
@@ -53,7 +64,12 @@ const AddBook = ({ token }) => {
         placeholder="Author"
         required
       />
-      <input
+      </div>
+
+      <div className='container mx-auto px-4 py-4'>
+        <label className='block text-gray-700 text-sm font-bold mb-1 ' htmlFor="description">Description</label>
+         <input
+         className='shadow apperance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
         type="text"
         value={description}
         onChange={(e) => {
@@ -62,9 +78,14 @@ const AddBook = ({ token }) => {
         placeholder="Description"
         required
       />
+      </div>
+      
+     
+     
 
-      <button type="submit"> Add Book</button>
+      <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 mb-6 ml-3 rounded focus:outline-none' type="submit"> Add Book</button>
     </form>
+    </div>
   );
 };
 
