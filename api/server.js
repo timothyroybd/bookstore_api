@@ -4,7 +4,7 @@ const cors = require('cors')
 const db = require('./config/db')
 const express = require('express')
 const app = express()
-const PORT = 5000; 
+const PORT = process.env.PORT || 5000; 
 const routes = require('./routers/index')
 
 app.use((req,res, next) => {
@@ -16,6 +16,10 @@ app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }))
+app.get('/api/test', (req, res) => {
+  res.send('Test endpoint is working');
+});
+
 
 
 app.use(express.json())
