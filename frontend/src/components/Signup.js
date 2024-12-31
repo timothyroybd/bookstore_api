@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import api from '../services/api';
 import {useNavigate} from 'react-router-dom'
 import '../styles/Form.css'
+import "../index.css"
 
 
 const Signup = ({setToken}) => {
@@ -31,14 +32,30 @@ const Signup = ({setToken}) => {
     }
 
   return (
-    <form onSubmit={handleSignUp}>
-        <input type='text' value ={username} onChange={(e)=> setUsername(e.target.value)} />
+    <form className='max-w-md mx-auto mt-24 p-6 bg-white shadow-md rounded-lg' onSubmit={handleSignUp}>
+        <h2 className='text-2xl font-bold mb-6 text-gray-900'></h2>
+        <div>
+        <label for ='username' className='block mb-2 text-sm font-medium text-gray-900 text-gray-900' >Username</label>
+        <input type='text' value ={username} onChange={(e)=> setUsername(e.target.value)} 
+        className='block w-full p-2 mb-4 border border-gray-300 rounded-lg'/>
+        </div>
 
-        <input type='email' value ={email} onChange={(e)=> setEmail(e.target.value)} />
+        <div>
+        <label for ='email' className='block mb-2 text-sm font-medium text-gray-900 text-gray-900' >Email</label>
 
-        <input type='password' value ={password} onChange={(e)=> setPassword(e.target.value)} />
+        <input type='email' value ={email} onChange={(e)=> setEmail(e.target.value)} 
+        className='block w-full p-2 mb-4 border border-gray-300 rounded-lg'/>
+        </div>
 
-        <button type='submit'>Signup</button>
+        <div>
+        <label for ='password' className='block mb-2 text-sm font-medium text-gray-900 text-gray-900' >Password</label>
+
+        <input type='password' value ={password} onChange={(e)=> setPassword(e.target.value)} 
+        className='block w-full p-2 mb-4 border border-gray-300 rounded-lg'/>
+
+        <button type='submit'
+        className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Signup</button>
+        </div>
 
 
         
