@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bookstore_api/frontend/static/css/main.c4f4db9e.css",
+    "main.js": "/bookstore_api/frontend/static/js/main.20b8f0c2.js",
+    "index.html": "/bookstore_api/frontend/index.html",
+    "main.c4f4db9e.css.map": "/bookstore_api/frontend/static/css/main.c4f4db9e.css.map",
+    "main.20b8f0c2.js.map": "/bookstore_api/frontend/static/js/main.20b8f0c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c4f4db9e.css",
+    "static/js/main.20b8f0c2.js"
+  ]
+}
