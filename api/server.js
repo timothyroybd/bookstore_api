@@ -14,6 +14,7 @@ app.use((req,res, next) => {
 
 app.use(cors({
     origin: ['https://bookstore-api-n50c.onrender.com/', 'http://localhost:3000', 'https://bookstore-api-theta.vercel.app/:1',  'bookstore-api-theta.vercel.app' ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
 }))
 app.get('/api/test', (req, res) => {
