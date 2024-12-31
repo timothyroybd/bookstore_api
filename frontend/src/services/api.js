@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiBaseUrl = `https://bookstore-api-n50c.onrender.com/`
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
 const api = axios.create({
     baseURL: apiBaseUrl,
 });

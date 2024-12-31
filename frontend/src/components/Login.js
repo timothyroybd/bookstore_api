@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import "../index.css"
-const backEndUrl = `https://bookstore-api-n50c.onrender.com`
+const backEndUrl = process.env.REACT_APP_API_BASE_URL
 
 const Login = ({setToken}) => {
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const Login = ({setToken}) => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      // console.log(backEndUrl)
+       console.log(backEndUrl)
       
       const response = await api.post(`${backEndUrl}/auth/login`, { email, password });
       console.log('Login response:', response.data);
