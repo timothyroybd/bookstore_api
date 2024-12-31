@@ -16,8 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build --max-warnings=0",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build", 
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://timothyroybd.github.io/bookstore_api/frontend",
   "eslintConfig": {
     "extends": [
       "react-app",
