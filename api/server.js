@@ -17,6 +17,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
 }))
+app.options('*', cors({ origin: ['https://bookstore-api-theta.vercel.app', 'http://localhost:3000'], methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], credentials: true, }));
 app.get('/api/test', (req, res) => {
   res.send('Test endpoint is working');
 });
