@@ -12,10 +12,10 @@ app.use((req,res, next) => {
     next()
 })
 
-// app.use(cors({
-//     origin: ['https://bookstore-api-n50c.onrender.com/', 'http://localhost:3000', 'https://bookstore-api-theta.vercel.app/:1',  'bookstore-api-theta.vercel.app' ],
-//     credentials: true
-// }))
+app.use(cors({
+    origin: ['https://bookstore-api-n50c.onrender.com/', 'http://localhost:3000', 'https://bookstore-api-theta.vercel.app/:1',  'bookstore-api-theta.vercel.app' ],
+    credentials: true
+}))
 app.get('/api/test', (req, res) => {
   res.send('Test endpoint is working');
 });
