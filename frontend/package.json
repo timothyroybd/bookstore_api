@@ -20,7 +20,7 @@
     "predeploy": "npm run build"
     
   },
-  "homepage": "https://timothyroybd.github.io/bookstore_api/frontend",
+  
   "eslintConfig": {
     "extends": [
       "react-app",
