@@ -13,11 +13,11 @@ app.use((req,res, next) => {
 })
 
 app.use(cors({
-    origin: ['https://bookstore-api-n50c.onrender.com/', 'http://localhost:3000', 'https://bookstore-api-theta.vercel.app/:1',  'bookstore-api-theta.vercel.app', 'https://bookstore-153f74ah5-timothyroybds-projects.vercel.app', 'https://bookstore-ox571g9my-timothyroybds-projects.vercel.app/' ],
+    origin: ['https://bookstore-api-n50c.onrender.com/', 'http://localhost:3000', 'https://bookstore-api-theta.vercel.app/:1',  'bookstore-api-theta.vercel.app', 'https://bookstore-153f74ah5-timothyroybds-projects.vercel.app', 'https://bookstore-ox571g9my-timothyroybds-projects.vercel.app' ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
 }))
-app.options('*', cors({ origin: ['https://bookstore-api-theta.vercel.app', 'http://localhost:3000', 'https://bookstore-153f74ah5-timothyroybds-projects.vercel.app', 'https://bookstore-ox571g9my-timothyroybds-projects.vercel.app/'], methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], credentials: true, }));
+app.options('*', cors({ origin: ['https://bookstore-api-theta.vercel.app', 'http://localhost:3000', 'https://bookstore-153f74ah5-timothyroybds-projects.vercel.app', 'https://bookstore-ox571g9my-timothyroybds-projects.vercel.app'], methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], credentials: true, }));
 
 
 app.get('/api/test', (req, res) => {
