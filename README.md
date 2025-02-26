@@ -10,7 +10,8 @@
 <h1>Bookstore API</h1>
 
 <h2 id="project-overview">Project Overview</h2>
-<p>In this simple project, I have implemented authentication, MongoDB database implementation and CURD operations. User can register, login, add, edit, update and remove books in a library and are able to edit their user information. The backend is hosted by Render and the front end is hosted by Vercel. The project is publically available here: https://bookstore-api-git-main-timothyroybds-projects.vercel.app </p>
+<p>In this simple project, I have implemented authentication, MongoDB database implementation and CURD operations. User can register, login, add, edit, update and remove books in a library and are able to edit their user information. The backend is hosted by Render and the front end is hosted by Vercel. The project is publically available here: https://bookstore-api-git-main-timothyroybds-projects.vercel.app 
+<strong>Please note that the backend engine is turned off to save money. If you are interested then I can turn it on</strong></p>
 
 <h2 id="installation-instructions">Installation Instructions</h2>
 
